@@ -1,0 +1,35 @@
+version: '3'
+services:
+  opensearch-agent:
+    image: opensearchproject/opensearch:2.11.0
+    container_name: opensearch-agent
+    environment:
+      - cluster.name=opensearch-cluster
+      - node.name=opensearch 
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m" 
+    volumes:
+      - opensearch:/usr/share/opensearch/data
+    ports:
+      - 9200:9200
+      - 9600:9600
+    networks:
+      - opensearch-agent-net
+  opensearch-agent-dashboards:
+    image: opensearchproject/opensearch-dashboards:2.11.0
+    container_name: opensearch-agent-dashboards
+    ports:
+      - 5601:5601
+    expose:
+      - "5601"
+    environment:
+      - 'OPENSEARCH_HOSTS=["https://opensearch-agent:9200"]'
+    networks:
+      - opensearch-agent-net
+
+networks:
+  opensearch-agent-net:
+ 
+volumes:
+  opensearch:

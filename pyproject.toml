@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "opensearch-agent"
+version = "0.1.0"
+description = ""
+authors = ["Andrea Nuzzo"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+chainlit = "^1.0.401"
+langchain = "^0.1.13"
+opensearch-py = "^2.4.2"
+matplotlib = "^3.8.3"
+tiktoken = "^0.6.0"
+langchain-openai = "^0.1.0"
+faker = "^24.7.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
